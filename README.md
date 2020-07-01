@@ -1,0 +1,2 @@
+# Image_Skeleton_Algorithm
+二値二次元配列を距離変換し、骨格を取り出す画像処理アルゴリズム。
