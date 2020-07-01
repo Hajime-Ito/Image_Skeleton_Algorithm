@@ -197,7 +197,6 @@ void skeleton(MAP *m)
     {
         for (int j = 0; j < m->col_size; j++)
         {
-            /*ILAND以外ならスキップ*/
             if (m->map[i][j] < ILAND)
                 continue;
 
