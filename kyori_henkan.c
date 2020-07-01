@@ -33,11 +33,13 @@ int main(void)
     int h, w, lookup_table[MAX_SIZE][1], max_label_num = 0;
     MAP m;
 
+    printf("put>> row_size column_size\n");
     fgets(buf, sizeof(buf), stdin);
     sscanf(buf, "%d %d\n", &h, &w);
 
     m = init_map(h, w);
 
+    printf("put>> 0->. 1-># ex)...#..###\n");
     for (int i = 0; i < h; i++)
     {
         fgets(buf, sizeof(buf), stdin);
@@ -137,7 +139,6 @@ void distance(MAP *m)
     {
         for (int j = 0; j < m->col_size; j++)
         {
-            /*ILAND以外ならスキップ*/
             if (m->map[i][j] < ILAND)
                 continue;
 
@@ -164,7 +165,6 @@ void distance(MAP *m)
     {
         for (int j = m->col_size - 1; j > 0; j--)
         {
-            /*ILAND以外ならスキップ*/
             if (m->map[i][j] < ILAND)
                 continue;
 
