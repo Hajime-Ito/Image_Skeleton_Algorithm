@@ -25,7 +25,6 @@ void print_map(MAP m);
 int minElement(const int *array, int size);
 void distance(MAP *m);
 void skeleton(MAP *m);
-void print_skeleton(MAP m);
 void free_map(MAP *m);
 
 int main(void)
@@ -48,7 +47,6 @@ int main(void)
     distance(&m);
     skeleton(&m);
     print_map(m);
-    print_skeleton(m);
     free_map(&m);
     return 0;
 }
@@ -203,6 +201,7 @@ void skeleton(MAP *m)
             if (m->map[i][j] < ILAND)
                 continue;
 
+            int flag = 1;
             skeleton_table[0] = m->map[i][j - 1];
             skeleton_table[1] = m->map[i - 1][j];
             skeleton_table[2] = m->map[i][j + 1];
@@ -213,25 +212,15 @@ void skeleton(MAP *m)
             {
                 if (m->map[i][j] < skeleton_table[n])
                 {
-                    m->map[i][j] = 0;
+                    flag = 0;
                     continue;
                 }
             }
-        }
-    }
-}
 
-void print_skeleton(MAP m)
-{
-    printf("\n");
-    for (int i = 0; i < m.row_size; i++)
-    {
-        for (int j = 0; j < m.col_size; j++)
-        {
-            if (m.map[i][j] == OUTSPACE || m.map[i][j] == SPACE)
+            if (flag == 0)
                 continue;
 
-            printf("[r = %c, c = %d] v=%d\n", i + 96, j, m.map[i][j]);
+            printf("[r = %c, c = %d] v=%d\n", i + 96, j, m->map[i][j]);
         }
     }
 }
